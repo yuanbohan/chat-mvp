@@ -14,6 +14,13 @@
 - **前端**：响应式 Web 界面，支持实时对话交互
 - **AI 能力**：集成 [OpenAI Go SDK](https://github.com/openai/openai-go)，使用 GPT-4o 模型提供智能对话
 
+## 🎬 演示视频
+
+观看应用实际操作效果：
+
+<video src="https://github.com/yuanbohan/chat-mvp/assets/vibe-coding-example.mp4" controls width="640" height="480">
+</video>
+
 ## ✨ 功能特性
 
 - 🏗️ **RESTful API 架构** - 标准化接口设计，易于扩展
@@ -69,11 +76,7 @@ go mod tidy
 3. **配置环境变量**
 
 ```bash
-# 方式一：使用环境变量
 export OPENAI_API_KEY="your-openai-api-key-here"
-
-# 方式二：创建 .env 文件（推荐）
-echo "OPENAI_API_KEY=your-openai-api-key-here" > .env
 ```
 
 4. **启动应用**
@@ -103,6 +106,8 @@ chat-mvp/
 │   └── script.js          #    前端交互逻辑
 ├── config/                # ⚙️ 应用配置管理
 │   └── config.go          #    配置文件处理
+├── assets/                # 📁 媒体资源文件
+│   └── vibe-coding-example.mp4  #  演示视频
 ├── Dockerfile             # 🐳 Docker 容器化配置
 ├── go.mod                 # 📦 Go 模块依赖
 ├── go.sum                 # 🔒 依赖版本锁定
