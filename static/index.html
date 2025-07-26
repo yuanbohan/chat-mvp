@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat MVP - OpenAI 聊天应用</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🤖 Chat MVP</h1>
+            <p>基于 OpenAI 的智能聊天助手</p>
+        </header>
+
+        <div class="user-setup">
+            <label for="userId">用户ID:</label>
+            <input type="text" id="userId" placeholder="请输入您的用户ID">
+            <button id="connectBtn">连接</button>
+        </div>
+
+        <div class="chat-container" id="chatContainer" style="display: none;">
+            <div class="chat-messages" id="chatMessages">
+                <!-- 聊天消息将在这里显示 -->
+            </div>
+
+            <div class="chat-input-container">
+                <div class="input-group">
+                    <input type="text" id="messageInput" placeholder="输入您的消息..." maxlength="500">
+                    <button id="sendBtn">发送</button>
+                </div>
+                <div class="input-info">
+                    <span id="charCount">0/500</span>
+                    <span id="status"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="loading" id="loading" style="display: none;">
+        <div class="spinner"></div>
+        <p>AI 正在思考中...</p>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
