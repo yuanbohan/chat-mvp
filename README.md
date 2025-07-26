@@ -18,8 +18,12 @@
 
 观看应用实际操作效果：
 
-<video src="https://github.com/yuanbohan/chat-mvp/assets/vibe-coding-example.mp4" controls width="640" height="480">
+<video width="640" height="480" controls>
+  <source src="./assets/vibe-coding-example.mp4" type="video/mp4">
+  Your browser does not support the video tag.
 </video>
+
+> **提示**：GitHub 支持直接预览 MP4 视频文件，点击上方链接即可观看
 
 ## ✨ 功能特性
 
