@@ -18,12 +18,9 @@
 
 观看应用实际操作效果：
 
-<video width="640" height="480" controls>
-  <source src="./assets/vibe-coding-example.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+[![演示视频](https://img.shields.io/badge/🎬_演示视频-点击观看-ff69b4?style=for-the-badge&logo=video&logoColor=white)](./assets/vibe-coding-example.mp4)
 
-> **提示**：GitHub 支持直接预览 MP4 视频文件，点击上方链接即可观看
+> **提示**：点击上方按钮即可观看完整演示视频
 
 ## ✨ 功能特性
 
