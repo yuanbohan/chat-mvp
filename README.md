@@ -18,8 +18,9 @@
 
 观看应用实际操作效果：
 
-<video src="https://github.com/yuanbohan/chat-mvp/assets/vibe-coding-example.mp4" controls width="640" height="480">
-</video>
+[![演示视频](https://img.shields.io/badge/🎬_演示视频-点击观看-ff69b4?style=for-the-badge&logo=video&logoColor=white)](./assets/vibe-coding-example.mp4)
+
+> **提示**：点击上方按钮即可观看完整演示视频
 
 ## ✨ 功能特性
 
