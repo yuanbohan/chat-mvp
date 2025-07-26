@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat MVP - OpenAI 聊天应用</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <h1 class="app-title">
+                    <span class="logo">🤖</span>
+                    Chat MVP
+                </h1>
+                <div class="header-controls">
+                    <button id="theme-toggle" class="theme-toggle" title="切换主题">
+                        <span class="theme-icon">🌙</span>
+                    </button>
+                    <button id="clear-history" class="clear-btn" title="清空对话">
+                        <span>🗑️</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Chat Container -->
+        <main class="chat-container">
+            <div id="chat-messages" class="chat-messages">
+                <div class="welcome-message">
+                    <div class="welcome-icon">👋</div>
+                    <h2>欢迎使用 Chat MVP</h2>
+                    <p>我是基于 OpenAI GPT-4o 的智能助手，很高兴为您服务！</p>
+                    <div class="quick-actions">
+                        <button class="quick-btn" data-message="你好，请介绍一下你自己">自我介绍</button>
+                        <button class="quick-btn" data-message="请帮我解释一下人工智能">AI 知识</button>
+                        <button class="quick-btn" data-message="给我讲一个有趣的故事">讲个故事</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Typing Indicator -->
+            <div id="typing-indicator" class="typing-indicator" style="display: none;">
+                <div class="typing-dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <span class="typing-text">AI 正在思考中...</span>
+            </div>
+        </main>
+
+        <!-- Input Area -->
+        <footer class="input-container">
+            <div class="input-wrapper">
+                <textarea 
+                    id="message-input" 
+                    class="message-input" 
+                    placeholder="输入您的消息..." 
+                    rows="1"
+                    maxlength="2000"
+                ></textarea>
+                <button id="send-button" class="send-button" disabled>
+                    <span class="send-icon">📤</span>
+                </button>
+            </div>
+            <div class="input-info">
+                <span class="char-count"><span id="char-count">0</span>/2000</span>
+                <span class="tip">按 Enter 发送，Shift+Enter 换行</span>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Error Toast -->
+    <div id="error-toast" class="error-toast" style="display: none;">
+        <span class="error-icon">⚠️</span>
+        <span class="error-message"></span>
+        <button class="error-close">×</button>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
