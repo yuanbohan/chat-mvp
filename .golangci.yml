@@ -1,0 +1,199 @@
+# golangci-lint 配置文件
+# 更多配置选项请参考: https://golangci-lint.run/usage/configuration/
+
+run:
+  # 超时时间
+  timeout: 5m
+
+  # 要检查的 Go 版本
+  go: '1.22.5'
+
+  # 并发数，默认为 CPU 核心数
+  concurrency: 4
+
+  # 要排除的目录
+  skip-dirs:
+    - vendor
+    - bin
+    - .git
+
+  # 要排除的文件
+  skip-files:
+    - ".*\\.pb\\.go$"
+    - ".*_generated\\.go$"
+
+# 输出配置
+output:
+  # 输出格式: colored-line-number|line-number|json|tab|checkstyle|code-climate|junit-xml|github-actions
+  format: colored-line-number
+
+  # 打印 linter 名称
+  print-issued-by: true
+
+  # 打印 linter 链接
+  print-linter-name: true
+
+  # 去重
+  uniq-by-line: true
+
+  # 按文件路径排序结果
+  sort-results: true
+
+# 所有可用的设置在 https://github.com/golangci/golangci-lint/blob/master/.golangci.reference.yml
+linters-settings:
+  # govet 检查器配置
+  govet:
+    check-shadowing: true
+
+  # gocyclo 圈复杂度检查
+  gocyclo:
+    min-complexity: 15
+
+  # maligned 结构体字段对齐检查
+  maligned:
+    suggest-new: true
+
+  # dupl 重复代码检查
+  dupl:
+    threshold: 100
+
+  # goconst 常量检查
+  goconst:
+    min-len: 2
+    min-occurrences: 2
+
+  # depguard 依赖检查
+  depguard:
+    rules:
+      main:
+        deny:
+          - pkg: "github.com/sirupsen/logrus"
+            desc: "使用标准库 log 或者 slog"
+
+  # misspell 拼写检查
+  misspell:
+    locale: US
+
+  # lll 行长度检查
+  lll:
+    line-length: 120
+
+  # unused 未使用代码检查
+  unused:
+    check-exported: false
+
+  # unparam 未使用参数检查
+  unparam:
+    check-exported: false
+
+  # nakedret 裸返回检查
+  nakedret:
+    max-func-lines: 30
+
+  # prealloc 预分配检查
+  prealloc:
+    simple: true
+    range-loops: true
+    for-loops: false
+
+  # gocritic 代码批评检查
+  gocritic:
+    enabled-tags:
+      - diagnostic
+      - experimental
+      - opinionated
+      - performance
+      - style
+    disabled-checks:
+      - dupImport # https://github.com/go-critic/go-critic/issues/845
+      - ifElseChain
+      - octalLiteral
+      - whyNoLint
+      - wrapperFunc
+
+  # funlen 函数长度检查
+  funlen:
+    lines: 100
+    statements: 50
+
+  # goimports 导入格式检查
+  goimports:
+    local-prefixes: chat-mvp
+
+  # revive 代码风格检查
+  revive:
+    severity: warning
+    rules:
+      - name: exported
+      - name: unreachable-code
+      - name: redefines-builtin-id
+
+linters:
+  # 启用所有 linter
+  enable-all: true
+
+  # 禁用指定的 linter
+  disable:
+    - maligned     # 已废弃，使用 fieldalignment
+    - interfacer   # 已废弃
+    - scopelint    # 已废弃，使用 exportloopref
+    - golint       # 已废弃，使用 revive
+    - exhaustivestruct # 已废弃，使用 exhaustruct
+    - varcheck     # 已废弃，使用 unused
+    - deadcode     # 已废弃，使用 unused
+    - structcheck  # 已废弃，使用 unused
+    - ifshort      # 已废弃
+    - nosnakecase  # 已废弃，使用 revive
+    - exhaustruct  # 太严格，可能导致太多误报
+    - testpackage  # 测试文件可以在同一包内
+    - paralleltest # 不是所有测试都需要并行
+    - wsl          # 空行规则太严格
+    - nlreturn     # 换行规则太严格
+    - godox        # 允许 TODO/FIXME 注释
+    - forbidigo    # 不需要禁止特定函数
+    - cyclop       # 已有 gocyclo
+    - maintidx     # 维护性指数不是必需的
+    - wrapcheck    # 错误包装检查太严格
+    - varnamelen   # 变量名长度检查太严格
+    - tagliatelle  # 标签格式检查太严格
+    - ireturn      # 接口返回检查太严格
+    - gofumpt      # 格式化工具，可选
+    - gci          # 导入顺序，可选
+    - grouper      # 分组检查，可选
+
+issues:
+  # 排除使用默认的排除规则
+  exclude-use-default: false
+
+  # 最大显示问题数，0 表示无限制
+  max-issues-per-linter: 0
+
+  # 最大同时显示的问题数，0 表示无限制
+  max-same-issues: 0
+
+  # 显示只在新代码中出现的问题
+  new: false
+
+  # 排除的问题模式
+  exclude:
+    # errcheck: Almost all programs ignore errors on these functions and in most cases it's ok
+    - Error return value of .((os\.)?std(out|err)\..*|.*Close|.*Flush|os\.Remove(All)?|.*print.*|os\.(Un)?Setenv). is not checked
+
+  # 排除指定文件的问题
+  exclude-rules:
+    # 排除测试文件中的某些检查
+    - path: _test\.go
+      linters:
+        - gomnd
+        - goerr113
+        - testifylint
+
+    # 排除 main.go 中的某些检查
+    - path: main\.go
+      linters:
+        - gomnd
+
+    # 排除配置文件中的错误处理检查
+    - path: config/
+      linters:
+        - goerr113
